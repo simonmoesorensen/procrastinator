@@ -1,20 +1,63 @@
 import React from 'react';
-import GridLayout from 'react-grid-layout';
+import {Responsive, WidthProvider} from 'react-grid-layout';
+import './grid-styles.css'
+import './resizable-styles.css'
+
+const ResponsiveGridLayout = WidthProvider(Responsive);
+const originalLayouts = getFromLS("layouts") || {};
 
 export default class Grid extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            layouts: JSON.parse(JSON.stringify(originalLayouts))
+        };
+    }
+
+    onLayoutChange(layout, layouts) {
+        saveToLS("layouts", layouts);
+        this.setState({layouts});
+    }
+
     render() {
-        // layout is an array of objects, see the demo for more complete usage
-        const layout = [
-            {i: 'a', x: 0, y: 0, w: 1, h: 2, static: true},
-            {i: 'b', x: 1, y: 0, w: 3, h: 2, minW: 2, maxW: 4},
-            {i: 'c', x: 4, y: 0, w: 1, h: 2}
-        ];
         return (
-            <GridLayout className="layout" layout={layout} cols={12} rowHeight={30} width={1200}>
-                <div key="a">a</div>
-                <div key="b">b</div>
-                <div key="c">c</div>
-            </GridLayout>
+            <ResponsiveGridLayout
+                className="layout"
+                layouts={this.state.layouts}
+                // breakpoints={{lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0}}
+                cols={{lg: 12, md: 8, sm: 6, xs: 4, xxs: 0}}
+                onLayoutChange={(layout, layouts) =>
+                    this.onLayoutChange(layout, layouts)
+                }
+            >
+                <div key="a" data-grid={{ w: 2, h: 1, x: 0, y: 0}}>a</div>
+                <div key="b" data-grid={{ w: 2, h: 1, x: 0, y: 0}}>b</div>
+                <div key="c" data-grid={{ w: 2, h: 1, x: 0, y: 0}}>c</div>
+            </ResponsiveGridLayout>
         )
+    }
+};
+
+function getFromLS(key) {
+    let ls = {};
+    if (localStorage) {
+        try {
+            ls = JSON.parse(localStorage.getItem("grid-layout")) || {};
+        } catch (e) {
+            /*Ignore*/
+        }
+    }
+    return ls[key];
+}
+
+function saveToLS(key, value) {
+    if (localStorage) {
+        localStorage.setItem(
+            "grid-layout",
+            JSON.stringify({
+                [key]: value
+            })
+        );
     }
 }
