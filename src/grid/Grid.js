@@ -2,17 +2,25 @@ import React from 'react';
 import {Responsive, WidthProvider} from 'react-grid-layout';
 import './grid-styles.css'
 import './resizable-styles.css'
+import _ from "lodash";
+import AddFeed from './AddFeed'
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
 const originalLayouts = getFromLS("layouts") || {};
+const originalItems = getFromLS("items") || [];
+const originalNewCounter = getFromLS("newCount") + 1 || 0;
 
 export default class Grid extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            layouts: JSON.parse(JSON.stringify(originalLayouts))
+            layouts: JSON.parse(JSON.stringify(originalLayouts)),
+            items: JSON.parse(JSON.stringify(originalItems)),
+            newCounter: originalNewCounter
         };
+
+        this.onAddItem = this.onAddItem.bind(this);
     }
 
     onLayoutChange(layout, layouts) {
@@ -20,9 +28,61 @@ export default class Grid extends React.Component {
         this.setState({layouts});
     }
 
+
+    onRemoveItem(i) {
+        console.log("removing", i);
+        this.setState({items: _.reject(this.state.items, {i: i})},
+            () => saveToLS("items", this.state.items));
+    }
+
+    onAddItem() {
+        /*eslint no-console: 0*/
+        console.log("adding", "n" + this.state.newCounter);
+        this.setState({
+            // Add a new item. It must have a unique key!
+            items: this.state.items.concat({
+                i: "n" + this.state.newCounter,
+                x: (this.state.items.length * 2) % (this.state.cols || 6),
+                y: 0, // puts it at the bottom
+                w: 2,
+                h: 2
+            }),
+            // Increment the counter to ensure key is always unique.
+            newCounter: this.state.newCounter + 1
+        },
+            () =>
+                saveToLS("items", this.state.items),
+                saveToLS("newCount", this.state.newCounter));
+    }
+
+    createElement(el) {
+        const removeStyle = {
+            position: "absolute",
+            right: "2px",
+            top: 0,
+            cursor: "pointer"
+        };
+        const i = el.i;
+        return (
+            <div key={i} data-grid={el}>
+                <span className="text">{i}</span>
+                <span
+                    className="remove"
+                    style={removeStyle}
+                    onClick={this.onRemoveItem.bind(this, i)}
+                >
+          x
+        </span>
+            </div>
+        );
+    }
+
     render() {
         return (
-            <ResponsiveGridLayout
+            <div>
+                <AddFeed onAddItem={this.onAddItem}/>
+
+                <ResponsiveGridLayout
                 className="layout"
                 layouts={this.state.layouts}
                 // breakpoints={{lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0}}
@@ -31,10 +91,10 @@ export default class Grid extends React.Component {
                     this.onLayoutChange(layout, layouts)
                 }
             >
-                <div key="a" data-grid={{ w: 2, h: 1, x: 0, y: 0}}>a</div>
-                <div key="b" data-grid={{ w: 2, h: 1, x: 0, y: 0}}>b</div>
-                <div key="c" data-grid={{ w: 2, h: 1, x: 0, y: 0}}>c</div>
+                {_.map(this.state.items, el => this.createElement(el))}
+
             </ResponsiveGridLayout>
+            </div>
         )
     }
 };
@@ -43,8 +103,9 @@ function getFromLS(key) {
     let ls = {};
     if (localStorage) {
         try {
-            ls = JSON.parse(localStorage.getItem("grid-layout")) || {};
+            ls = JSON.parse(localStorage.getItem(key)) || {};
         } catch (e) {
+            console.log(e);
             /*Ignore*/
         }
     }
@@ -54,7 +115,7 @@ function getFromLS(key) {
 function saveToLS(key, value) {
     if (localStorage) {
         localStorage.setItem(
-            "grid-layout",
+            key,
             JSON.stringify({
                 [key]: value
             })
