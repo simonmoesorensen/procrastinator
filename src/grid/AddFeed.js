@@ -8,9 +8,10 @@ export default class AddFeed extends React.Component {
         super(props);
 
         this.state = {
-            feed: "Not selected"
+            feed: null
         };
         this.onSelect = this.onSelect.bind(this);
+        this.onClick = this.onClick.bind(this);
     };
 
     onSelect(e) {
@@ -18,6 +19,19 @@ export default class AddFeed extends React.Component {
             feed: e.value
         })
     };
+
+    onClick() {
+        if (this.state.feed) {
+            this.props.onAddItem(this.state.feed);
+        } else {
+            alert('Please choose a feed');
+            return;
+        }
+
+        this.setState({
+            feed: null
+        })
+    }
 
     render() {
         const options = ["Twitter", "Instagram", "Youtube", "Reddit"];
@@ -27,7 +41,7 @@ export default class AddFeed extends React.Component {
                 <h2> Procrastinator feeds </h2>
                 <Dropdown options={options} onChange={this.onSelect} value={'Select feed'}
                           placeholder="Select an option"/>
-                <Button variant="primary" onClick={() => this.props.onAddItem(this.state.feed)}>Add Item</Button>
+                <Button variant="primary" onClick={this.onClick}>Add Item</Button>
             </div>
 
         )
