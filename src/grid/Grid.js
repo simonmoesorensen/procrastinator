@@ -4,7 +4,6 @@ import './grid-styles.css'
 import './resizable-styles.css'
 import _ from "lodash";
 import AddFeed from './AddFeed'
-import Button from "react-bootstrap/Button";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 
@@ -31,7 +30,6 @@ export default class Grid extends React.Component {
         this.setState({layouts});
     }
 
-
     onRemoveItem(i) {
         console.log("removing", i);
         this.setState({items: _.reject(this.state.items, {i: i})},
@@ -48,7 +46,8 @@ export default class Grid extends React.Component {
                 x: (this.state.items.length * 2) % (this.state.cols || 6),
                 y: 0, // puts it at the bottom
                 w: 2,
-                h: 2
+                h: 2,
+                type: name
             }),
             // Increment the counter to ensure key is always unique.
             newCounter: this.state.newCounter + 1
@@ -62,14 +61,23 @@ export default class Grid extends React.Component {
         const i = el.i;
         return (
             <div key={i} data-grid={el}>
-                <span className="text">{i}</span>
                 <span
                     className="remove"
                     onClick={this.onRemoveItem.bind(this, i)}
                 ><FontAwesomeIcon icon={faTrashAlt} /></span>
-                <Button variant="primary">Test</Button>
-                Yes we can click stuff in containers
-            {/*  Add custom elements in here as function argument  */}
+
+                <div>
+                    {el.type === 'Twitter' ? (
+                        '<Twitter/>'
+                    ) : el.type === 'Facebook' ? (
+                        '<Facebook/>'
+                    ) : el.type === 'Instagram' ? (
+                        '<Instagram/>'
+                    ) : el.type === 'Reddit' ? (
+                        '<Reddit/>'
+                    ) : 'No feed.'
+                    }
+                </div>
             </div>
         );
     }
@@ -86,8 +94,7 @@ export default class Grid extends React.Component {
                 cols={{lg: 12, md: 8, sm: 6, xs: 4, xxs: 0}}
                 onLayoutChange={(layout, layouts) =>
                     this.onLayoutChange(layout, layouts)
-                }
-            >
+                }>
                 {_.map(this.state.items, el => this.createElement(el))}
 
             </ResponsiveGridLayout>
