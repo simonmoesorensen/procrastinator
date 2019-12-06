@@ -1,0 +1,13 @@
+.actionbar {
+    display: flex;
+    margin: 1rem;
+    align-items: center;
+}
+
+.actionbar * {
+    margin-right: 0.5rem;
+}
+
+h2 {
+    color: white;
+}

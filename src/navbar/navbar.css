@@ -1,0 +1,7 @@
+.navbar {
+    background-color: var(--wet-asphalt);
+}
+
+.navbar * {
+    margin-left: 0.5rem;
+}

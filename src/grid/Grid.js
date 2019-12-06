@@ -4,6 +4,9 @@ import './grid-styles.css'
 import './resizable-styles.css'
 import _ from "lodash";
 import AddFeed from './AddFeed'
+import Button from "react-bootstrap/Button";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
 const originalLayouts = getFromLS("layouts") || {};
@@ -35,13 +38,13 @@ export default class Grid extends React.Component {
             () => saveToLS("items", this.state.items));
     }
 
-    onAddItem() {
+    onAddItem(name) {
         /*eslint no-console: 0*/
         console.log("adding", "n" + this.state.newCounter);
         this.setState({
             // Add a new item. It must have a unique key!
             items: this.state.items.concat({
-                i: "n" + this.state.newCounter,
+                i: name + this.state.newCounter,
                 x: (this.state.items.length * 2) % (this.state.cols || 6),
                 y: 0, // puts it at the bottom
                 w: 2,
@@ -56,23 +59,17 @@ export default class Grid extends React.Component {
     }
 
     createElement(el) {
-        const removeStyle = {
-            position: "absolute",
-            right: "2px",
-            top: 0,
-            cursor: "pointer"
-        };
         const i = el.i;
         return (
             <div key={i} data-grid={el}>
                 <span className="text">{i}</span>
                 <span
                     className="remove"
-                    style={removeStyle}
                     onClick={this.onRemoveItem.bind(this, i)}
-                >
-          x
-        </span>
+                ><FontAwesomeIcon icon={faTrashAlt} /></span>
+                <Button variant="primary">Test</Button>
+                Yes we can click stuff in containers
+            {/*  Add custom elements in here as function argument  */}
             </div>
         );
     }
@@ -106,7 +103,6 @@ function getFromLS(key) {
             ls = JSON.parse(localStorage.getItem(key)) || {};
         } catch (e) {
             console.log(e);
-            /*Ignore*/
         }
     }
     return ls[key];
