@@ -6,6 +6,10 @@ import _ from "lodash";
 import AddFeed from './AddFeed'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import Reddit from "../api-feeds/Reddit";
+import Twitter from "../api-feeds/Twitter";
+import Youtube from "../api-feeds/Youtube";
+import Instagram from "../api-feeds/Instagram";
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
 const originalLayouts = getFromLS("layouts") || {};
@@ -68,13 +72,13 @@ export default class Grid extends React.Component {
 
                 <div>
                     {el.type === 'Twitter' ? (
-                        '<Twitter/>'
-                    ) : el.type === 'Facebook' ? (
-                        '<Facebook/>'
+                        <Twitter/>
+                    ) : el.type === 'Youtube' ? (
+                        <Youtube/>
                     ) : el.type === 'Instagram' ? (
-                        '<Instagram/>'
+                        <Instagram/>
                     ) : el.type === 'Reddit' ? (
-                        '<Reddit/>'
+                        <Reddit/>
                     ) : 'No feed.'
                     }
                 </div>
