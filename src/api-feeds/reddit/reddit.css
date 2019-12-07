@@ -1,0 +1,9 @@
+.reddit-items {
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    max-height: 90%;
+    max-width: 100%;
+    margin-top: 1rem;
+    /*height: inherit;*/
+}

@@ -5,8 +5,8 @@ import './resizable-styles.css'
 import _ from "lodash";
 import AddFeed from './AddFeed'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faTrashAlt} from "@fortawesome/free-solid-svg-icons";
-import Reddit from "../api-feeds/Reddit";
+import {faTrashAlt, faArrowsAlt} from "@fortawesome/free-solid-svg-icons";
+import Reddit from "../api-feeds/reddit/Reddit";
 import Twitter from "../api-feeds/Twitter";
 import Youtube from "../api-feeds/Youtube";
 import Instagram from "../api-feeds/Instagram";
@@ -69,8 +69,9 @@ export default class Grid extends React.Component {
                     className="remove"
                     onClick={this.onRemoveItem.bind(this, i)}
                 ><FontAwesomeIcon icon={faTrashAlt}/></span>
-
-                <div>
+                <span
+                    className="drag-handle"
+                ><FontAwesomeIcon icon={faArrowsAlt}/></span>
                     {el.type === 'Twitter' ? (
                         <Twitter/>
                     ) : el.type === 'Youtube' ? (
@@ -81,7 +82,6 @@ export default class Grid extends React.Component {
                         <Reddit/>
                     ) : 'No feed.'
                     }
-                </div>
             </div>
         );
     }
@@ -98,7 +98,8 @@ export default class Grid extends React.Component {
                     cols={{lg: 12, md: 8, sm: 6, xs: 4, xxs: 0}}
                     onLayoutChange={(layout, layouts) =>
                         this.onLayoutChange(layout, layouts)
-                    }>
+                    }
+                    draggableHandle=".drag-handle">
                     {_.map(this.state.items, el => this.createElement(el))}
 
                 </ResponsiveGridLayout>
