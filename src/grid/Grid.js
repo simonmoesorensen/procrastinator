@@ -4,8 +4,8 @@ import './grid-styles.css'
 import './resizable-styles.css'
 import _ from "lodash";
 import AddFeed from './AddFeed'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faTrashAlt} from "@fortawesome/free-solid-svg-icons";
 import Reddit from "../api-feeds/Reddit";
 import Twitter from "../api-feeds/Twitter";
 import Youtube from "../api-feeds/Youtube";
@@ -44,21 +44,21 @@ export default class Grid extends React.Component {
         /*eslint no-console: 0*/
         console.log("adding", "n" + this.state.newCounter);
         this.setState({
-            // Add a new item. It must have a unique key!
-            items: this.state.items.concat({
-                i: name + this.state.newCounter,
-                x: (this.state.items.length * 2) % (this.state.cols || 6),
-                y: 0, // puts it at the bottom
-                w: 2,
-                h: 2,
-                type: name
-            }),
-            // Increment the counter to ensure key is always unique.
-            newCounter: this.state.newCounter + 1
-        },
+                // Add a new item. It must have a unique key!
+                items: this.state.items.concat({
+                    i: name + this.state.newCounter,
+                    x: (this.state.items.length * 2) % (this.state.cols || 6),
+                    y: 0, // puts it at the bottom
+                    w: 2,
+                    h: 2,
+                    type: name
+                }),
+                // Increment the counter to ensure key is always unique.
+                newCounter: this.state.newCounter + 1
+            },
             () =>
                 saveToLS("items", this.state.items),
-                saveToLS("newCount", this.state.newCounter));
+            saveToLS("newCount", this.state.newCounter));
     }
 
     createElement(el) {
@@ -68,7 +68,7 @@ export default class Grid extends React.Component {
                 <span
                     className="remove"
                     onClick={this.onRemoveItem.bind(this, i)}
-                ><FontAwesomeIcon icon={faTrashAlt} /></span>
+                ><FontAwesomeIcon icon={faTrashAlt}/></span>
 
                 <div>
                     {el.type === 'Twitter' ? (
@@ -92,16 +92,16 @@ export default class Grid extends React.Component {
                 <AddFeed onAddItem={this.onAddItem}/>
 
                 <ResponsiveGridLayout
-                className="layout"
-                layouts={this.state.layouts}
-                // breakpoints={{lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0}}
-                cols={{lg: 12, md: 8, sm: 6, xs: 4, xxs: 0}}
-                onLayoutChange={(layout, layouts) =>
-                    this.onLayoutChange(layout, layouts)
-                }>
-                {_.map(this.state.items, el => this.createElement(el))}
+                    className="layout"
+                    layouts={this.state.layouts}
+                    // breakpoints={{lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0}}
+                    cols={{lg: 12, md: 8, sm: 6, xs: 4, xxs: 0}}
+                    onLayoutChange={(layout, layouts) =>
+                        this.onLayoutChange(layout, layouts)
+                    }>
+                    {_.map(this.state.items, el => this.createElement(el))}
 
-            </ResponsiveGridLayout>
+                </ResponsiveGridLayout>
             </div>
         )
     }
