@@ -1,9 +1,65 @@
 .reddit-items {
     display: flex;
     flex-direction: column;
-    overflow-y: scroll;
-    max-height: 90%;
-    max-width: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: calc(100% - 60px);
     margin-top: 1rem;
-    /*height: inherit;*/
+}
+
+.reddit-item {
+    display: flex;
+    box-shadow: 0 6px 9px rgba(0, 0, 0, 0.25);
+    margin-bottom: 1.5rem;
+}
+
+.reddit-image {
+    min-width: 100%;
+    max-width: 100%;
+}
+
+.reddit-items .col-sm-1 {
+    padding: 0;
+}
+
+.feed .Dropdown-root {
+    margin-right: 1.5rem;
+}
+
+a {
+    color: var(--peter-river);
+}
+
+/* SCROLLBAR */
+
+.scrollbar
+{
+    margin-left: 30px;
+    float: left;
+    height: 300px;
+    width: 65px;
+    background: #F5F5F5;
+    overflow-y: scroll;
+    margin-bottom: 25px;
+}
+
+.reddit-items::-webkit-scrollbar-track
+{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+    border-radius: 5px;
+    background-color: var(--peter-river);
+    opacity: 0.1;
+}
+
+.reddit-items::-webkit-scrollbar
+{
+    width: 15px;
+    background-color: var(--wet-asphalt);
+}
+
+.reddit-items::-webkit-scrollbar-thumb
+{
+    border-radius: 9px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    background-color: var(--clouds);
 }

@@ -3,6 +3,8 @@ import SearchBar from "../SearchBar";
 import RedditItem from "./RedditItem";
 import Dropdown from "react-dropdown";
 import './reddit.css';
+import _ from "lodash";
+
 
 export default class Reddit extends React.Component {
     constructor(props) {
@@ -12,6 +14,7 @@ export default class Reddit extends React.Component {
         this.sorts = ['hot', 'new', 'top', 'controversial', 'rising'];
 
         this.changeSort = this.changeSort.bind(this);
+        this.changeSubreddit = this.changeSubreddit.bind(this);
     }
 
     state = {
@@ -26,6 +29,28 @@ export default class Reddit extends React.Component {
     componentDidMount() {
         this.changeSubreddit(this.state.currentSubreddit);
     }
+
+    handleScroll = (e) => {
+        const bottom = e.target.scrollHeight - e.target.scrollTop === e.target.clientHeight;
+        if (bottom) {
+            console.log('header bottom reached');
+            this.nextPage();
+        }
+    };
+
+    nextPage = () => {
+        fetch(this.url + this.state.currentSubreddit + "/" + this.state.sort + ".json?count=" + (this.state.page * 25) + "&after=" + this.state.after)
+            .then(res => res.json())
+            .then((data) => {
+                this.setState(() => ({
+                    files: this.state.files.slice().concat(data.data.children),
+                    after: data.data.after,
+                    before: data.data.before,
+                    page: this.state.page + 1
+                }));
+            })
+            .catch(console.log)
+    };
 
     changeSubreddit(sub) {
         this.setState({
@@ -46,7 +71,6 @@ export default class Reddit extends React.Component {
     }
 
     changeSort(sort) {
-        console.log(sort)
         this.setState({
             files: [],
             sort: sort,
@@ -73,10 +97,10 @@ export default class Reddit extends React.Component {
                     <div>
                         <SearchBar/>
                     </div>
-                    <Dropdown options={this.sorts} onChange={(obj) => this.changeSort(obj.value)} value={'Select'}
+                    <Dropdown options={this.sorts} onChange={(obj) => this.changeSort(obj.value)} value={'Sort by'}
                               placeholder="Select an option"/>
                 </div>
-                <div className='reddit-items'>
+                <div className='reddit-items' onScroll={this.handleScroll}>
                 {this.state.files.map((file) => (
                     <RedditItem key={file.data.id} file={file}/>
                 ))}
