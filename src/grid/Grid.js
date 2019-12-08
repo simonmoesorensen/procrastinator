@@ -49,8 +49,10 @@ export default class Grid extends React.Component {
                     i: name + this.state.newCounter,
                     x: (this.state.items.length * 2) % (this.state.cols || 6),
                     y: 0, // puts it at the bottom
-                    w: 2,
-                    h: 2,
+                    w: 3,
+                    h: 3,
+                    minW: 3,
+                    minH: 3,
                     type: name
                 }),
                 // Increment the counter to ensure key is always unique.
@@ -95,7 +97,7 @@ export default class Grid extends React.Component {
                     className="layout"
                     layouts={this.state.layouts}
                     // breakpoints={{lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0}}
-                    cols={{lg: 12, md: 8, sm: 6, xs: 4, xxs: 0}}
+                    cols={{lg: 12, md: 8, sm: 6, xs: 4, xxs: 3}}
                     onLayoutChange={(layout, layouts) =>
                         this.onLayoutChange(layout, layouts)
                     }

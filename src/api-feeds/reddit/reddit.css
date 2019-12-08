@@ -9,13 +9,16 @@
 
 .reddit-item {
     display: flex;
-    box-shadow: 0 6px 9px rgba(0, 0, 0, 0.25);
+    box-shadow: inset 0 6px 9px rgba(0, 0, 0, 0.25);
     margin-bottom: 1.5rem;
+    background-color: #384e65;
+    border-radius: 0.5rem;
+    padding: 1rem;
 }
 
 .reddit-image {
-    min-width: 100%;
-    max-width: 100%;
+    max-width: 800px;
+    width: 100%;
 }
 
 .reddit-items .col-sm-1 {

@@ -16,7 +16,7 @@ export default class SearchBar extends React.Component {
                         r/
                     </InputGroup.Text>
                 </InputGroup.Prepend>
-                <FormControl onClick={(e) => e.preventDefault()} placeholder='subreddit'/>
+                <FormControl onChange={this.props.onChange} placeholder='subreddit'/>
             </InputGroup>
         )
     }
