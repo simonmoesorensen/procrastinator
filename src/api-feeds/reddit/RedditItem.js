@@ -3,6 +3,8 @@ import Col from "react-bootstrap/Col";
 import moment from 'moment';
 import ReactHTMLParser from 'react-html-parser';
 import Parser from 'react-html-parser';
+import {faThumbsUp, faComment, faArrowsAlt} from "@fortawesome/free-solid-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 const RedditItem = ({file}) => {
     let previewImage;
@@ -19,11 +21,12 @@ const RedditItem = ({file}) => {
     let subreddit = "https://reddit.com/r/" + file.data.subreddit;
     let post_link = "https://reddit.com" + file.data.permalink;
     let user_link = "https://reddit.com/u/" + file.data.author;
-    console.log(file.data);
+    // console.log(file.data);
     return (
         <div className='reddit-item'>
             <Col sm='1'>
-                {file.data.ups} <br/> upvotes
+                <FontAwesomeIcon icon={faThumbsUp}/><br/>{formatToK(file.data.ups)}<br/><br/>
+                <FontAwesomeIcon icon={faComment}/><br/>{formatToK(file.data.num_comments)} <br/>
             </Col>
             <Col lg='11'>
                 <a href={subreddit} target='_blank'>{file.data.subreddit_name_prefixed}</a><span> | Posted by</span><a
@@ -40,21 +43,12 @@ const RedditItem = ({file}) => {
                                                 autoPlay="autoPlay"
                                                 loop="loop"
                                                 muted="muted">
-                            <source src={file.data.media.reddit_video.scrubber_media_url} type="video/mp4"/>
+                            <source src={file.data.media.reddit_video.fallback_url} type="video/mp4"/>
                         </video>
-                        // : file.data.url.includes(".gifv") ? <video className="reddit-image"
-                        //                                            controls
-                        //                                            preload="auto"
-                        //                                            autoPlay="autoPlay"
-                        //                                            loop="loop"
-                        //                                            muted="muted">
-                        //     <source src={file.data.url}/>
-                        // </video>
                         : previewImage ? <img className='reddit-image' src={previewImage} alt={previewImage}/>
                             : ''
                 }
                 <br/>
-                Comments
             </Col>
 
 
@@ -62,5 +56,17 @@ const RedditItem = ({file}) => {
 
     );
 };
+
+function formatToK(number) {
+    var str = number.toString();
+    if (number >= 1000) {
+        str = str.slice(0,1) + "." + str.slice(1,2) + "k"
+    } else if (number > 10000) {
+        str = str.slice(0,2) + "." + str.slice(2,3) + "k"
+    } else if (number > 100000) {
+        str = str.slice(0,3) + "k"
+    }
+    return str;
+}
 
 export default RedditItem;

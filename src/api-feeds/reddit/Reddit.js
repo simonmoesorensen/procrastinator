@@ -3,8 +3,6 @@ import SearchBar from "../SearchBar";
 import RedditItem from "./RedditItem";
 import Dropdown from "react-dropdown";
 import './reddit.css';
-import _ from "lodash";
-
 
 export default class Reddit extends React.Component {
     constructor(props) {
@@ -32,7 +30,7 @@ export default class Reddit extends React.Component {
     }
 
     handleScroll = (e) => {
-        const bottom = e.target.scrollHeight - e.target.scrollTop === e.target.clientHeight;
+        const bottom = e.target.scrollHeight - e.target.scrollTop <= e.target.clientHeight;
         if (bottom) {
             console.log('header bottom reached');
             this.nextPage();
@@ -40,13 +38,10 @@ export default class Reddit extends React.Component {
     };
 
     nextPage = () => {
-        fetch(this.url + this.state.currentSubreddit + "/" + this.state.sort + ".json?count=" + (this.state.page * 25) + "&after=" + this.state.after)
+        fetch(this.url + this.state.currentSubreddit + "/" + this.state.sort + ".json?count=" + (this.state.page * 10 - 1) + "&after=" + this.state.after)
             .then(res => res.json())
             .then((data) => {
-                if (data.error) {
-                    // document.getElementsByClassName('reddit-items')[0].innerHTML = "No subreddit found...";
-                } else {
-                    // document.getElementsByClassName('reddit-items')[0].innerHTML = "";
+                if (!data.error) {
                     this.setState(() => ({
                         files: data ? this.state.files.slice().concat(data.data.children) : this.state.files,
                         after: data.data.after,
@@ -66,10 +61,7 @@ export default class Reddit extends React.Component {
         fetch(this.url + sub + "/" + this.state.sort + '.json')
             .then(res => res.json())
             .then((data) => {
-                if (data.error) {
-                    // document.getElementsByClassName('reddit-items')[0].innerHTML = "No subreddit found...";
-                } else {
-                    // document.getElementsByClassName('reddit-items')[0].innerHTML = "";
+                if (!data.error) {
                     this.setState({
                         files: data.data.children,
                         after: data.data.after,
