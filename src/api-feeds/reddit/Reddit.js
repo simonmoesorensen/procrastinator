@@ -4,6 +4,7 @@ import RedditItem from "./RedditItem";
 import Dropdown from "react-dropdown";
 import '../feed.css';
 import './reddit.css';
+import {InputGroup} from "react-bootstrap";
 
 export default class Reddit extends React.Component {
     constructor(props) {
@@ -102,7 +103,12 @@ export default class Reddit extends React.Component {
                 <div className='d-flex justify-content-between'>
                     <div>
                         <SearchBar onChange={(obj) => this.changeSubreddit("r/" + obj.target.value)}
-                        placeholder="subreddit" prepend={true}/>
+                        placeholder="subreddit" prepend={<InputGroup.Prepend>
+                                                            <InputGroup.Text>
+                                                                r/
+                                                            </InputGroup.Text>
+                                                        </InputGroup.Prepend>}
+                        />
                     </div>
                     <Dropdown options={this.sorts} onChange={(obj) => this.changeSort(obj.value)} value={this.state.defaultValue}
                               placeholder="Select an option"/>

@@ -11,18 +11,11 @@ export default class SearchBar extends React.Component {
     render() {
         return (
             <InputGroup>
-                {
-                    this.props.prepend ? <InputGroup.Prepend>
-                            <InputGroup.Text>
-                                r/
-                            </InputGroup.Text>
-                        </InputGroup.Prepend>
-                        : ""
-                }
-
-                <FormControl onChange={this.props.onChange} placeholder={this.props.placeholder}/>
+                {this.props.prepend}
+                <FormControl onChange={this.props.onChange} onSubmit={this.props.onSubmit} placeholder={this.props.placeholder}/>
+                {this.props.append}
             </InputGroup>
-        )
+        );
     }
 
 }

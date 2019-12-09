@@ -3,38 +3,53 @@ import youtube from './youtube-api.js';
 import '../feed.css';
 import SearchBar from "../SearchBar";
 import VideoDetail from "./YoutubeDetail";
+import {InputGroup} from "react-bootstrap";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
 
-const KEY = 'AIzaSyDBjiJe8aFg-EnChJ4mqa7mfCjLgeLlfrA';
-const maxResults = 10;
+
 
 export default class Youtube extends React.Component {
     constructor(props) {
         super(props);
+
+        this.part = 'snippet, statistics';
+        this.key = 'AIzaSyCTLJXDOMiF29v6kSlOxCZZZ2I3cXZJtco';
+        this.maxResults = 10;
+
+        this.onSubmit = this.onSubmit.bind(this);
     }
 
     state = {
         videos: [],
-        nextPageToken: ""
+        nextPageToken: "",
+        currentSearch: ""
     };
 
     componentDidMount() {
         this.getMostPopular();
     }
 
-    onChange(term) {
-        if (term.length === 0) {
+    onSubmit() {
+        if (this.state.currentSearch.length === 0) {
             this.getMostPopular();
         } else {
-            this.searchVideo(term);
+            this.searchVideo(this.state.currentSearch);
         }
+    }
+
+    onChange(term) {
+        this.setState({
+            currentSearch: term
+        })
     }
 
     searchVideo = async (termFromSearchBar) => {
         const response = await youtube.get('/search', {
             params: {
-                part: "snippet",
-                key: KEY,
-                maxResults: maxResults,
+                part: this.part,
+                key: this.key,
+                maxResults: this.maxResults,
                 q: termFromSearchBar,
                 type: "video",
                 videoEmbeddable: true
@@ -42,17 +57,18 @@ export default class Youtube extends React.Component {
         });
         this.setState({
             videos: response.data.items,
-            nextPageToken: response.data.nextPageToken
+            nextPageToken: response.data.nextPageToken,
+            currentSearch: termFromSearchBar
         })
     };
 
-    nextPage = async (termFromSearchBar) => {
+    nextPage = async () => {
         const response = await youtube.get('/search', {
             params: {
-                part: "snippet",
-                key: KEY,
-                maxResults: maxResults,
-                q: termFromSearchBar,
+                part: this.part,
+                key: this.key,
+                maxResults: this.maxResults,
+                q: this.state.currentSearch,
                 type: "video",
                 videoEmbeddable: true,
                 pageToken: this.state.nextPageToken
@@ -67,9 +83,9 @@ export default class Youtube extends React.Component {
     getMostPopular = async () => {
         const response = await youtube.get('/videos', {
             params: {
-                part: "snippet",
-                key: KEY,
-                maxResults: maxResults,
+                part: this.part,
+                key: this.key,
+                maxResults: this.maxResults,
                 chart: "mostPopular",
                 regionCode: "US"
             }
@@ -93,8 +109,12 @@ export default class Youtube extends React.Component {
             <div className='feed'>
                 <div className='pr-2'>
                     <div>
-                        <SearchBar onChange={(obj) => this.onChange(obj.target.value)}
-                        placeholder="Search for a youtube video" prepend={false}/>
+                        <SearchBar onChange={(e) => this.onChange(e.target.value)}
+                        placeholder="Search for a youtube video" append={<InputGroup.Append>
+                            <Button variant="primary" onClick={this.onSubmit}>
+                                Search
+                            </Button>
+                        </InputGroup.Append>}/>
                     </div>
                 </div>
                 <div className='feed-items' onScroll={this.handleScroll}>
