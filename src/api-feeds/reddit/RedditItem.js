@@ -3,7 +3,7 @@ import Col from "react-bootstrap/Col";
 import moment from 'moment';
 import ReactHTMLParser from 'react-html-parser';
 import Parser from 'react-html-parser';
-import {faThumbsUp, faComment, faArrowsAlt} from "@fortawesome/free-solid-svg-icons";
+import {faThumbsUp, faComment} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 const RedditItem = ({file}) => {
@@ -23,7 +23,7 @@ const RedditItem = ({file}) => {
     let user_link = "https://reddit.com/u/" + file.data.author;
     // console.log(file.data);
     return (
-        <div className='reddit-item'>
+        <div className='feed-item'>
             <Col sm='1'>
                 <FontAwesomeIcon icon={faThumbsUp}/><br/>{formatToK(file.data.ups)}<br/><br/>
                 <FontAwesomeIcon icon={faComment}/><br/>{formatToK(file.data.num_comments)} <br/>

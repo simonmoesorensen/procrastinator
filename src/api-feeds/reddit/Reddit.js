@@ -2,6 +2,7 @@ import React from "react";
 import SearchBar from "../SearchBar";
 import RedditItem from "./RedditItem";
 import Dropdown from "react-dropdown";
+import '../feed.css';
 import './reddit.css';
 
 export default class Reddit extends React.Component {
@@ -100,12 +101,13 @@ export default class Reddit extends React.Component {
             <div className='feed'>
                 <div className='d-flex justify-content-between'>
                     <div>
-                        <SearchBar onChange={(obj) => this.changeSubreddit("r/" + obj.target.value)}/>
+                        <SearchBar onChange={(obj) => this.changeSubreddit("r/" + obj.target.value)}
+                        placeholder="subreddit" prepend={true}/>
                     </div>
                     <Dropdown options={this.sorts} onChange={(obj) => this.changeSort(obj.value)} value={this.state.defaultValue}
                               placeholder="Select an option"/>
                 </div>
-                <div className='reddit-items' onScroll={this.handleScroll}>
+                <div className='feed-items' onScroll={this.handleScroll}>
                 {
                     (this.state.files.length !== 0) ?
                         this.state.files.map((file) => (

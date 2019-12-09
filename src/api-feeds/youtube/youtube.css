@@ -1,0 +1,9 @@
+.youtube-description {
+    overflow: hidden;
+    max-height: 100px;
+}
+
+.youtube-video {
+    max-height: 300px;
+    border: none;
+}

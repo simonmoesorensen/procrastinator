@@ -11,12 +11,16 @@ export default class SearchBar extends React.Component {
     render() {
         return (
             <InputGroup>
-                <InputGroup.Prepend>
-                    <InputGroup.Text>
-                        r/
-                    </InputGroup.Text>
-                </InputGroup.Prepend>
-                <FormControl onInput={this.props.onChange} placeholder='subreddit'/>
+                {
+                    this.props.prepend ? <InputGroup.Prepend>
+                            <InputGroup.Text>
+                                r/
+                            </InputGroup.Text>
+                        </InputGroup.Prepend>
+                        : ""
+                }
+
+                <FormControl onChange={this.props.onChange} placeholder={this.props.placeholder}/>
             </InputGroup>
         )
     }
