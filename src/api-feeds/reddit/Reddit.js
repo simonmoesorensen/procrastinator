@@ -53,6 +53,7 @@ export default class Reddit extends React.Component {
     };
 
     changeSubreddit(sub) {
+        sub = sub.endsWith("r/") ? "" : sub;
         this.setState({
             files: [],
             currentSubreddit: sub,
@@ -105,9 +106,13 @@ export default class Reddit extends React.Component {
                               placeholder="Select an option"/>
                 </div>
                 <div className='reddit-items' onScroll={this.handleScroll}>
-                {this.state.files.map((file) => (
-                    <RedditItem key={file.data.id} file={file}/>
-                ))}
+                {
+                    (this.state.files.length !== 0) ?
+                        this.state.files.map((file) => (
+                        <RedditItem key={file.data.id} file={file}/>
+                        ))
+                        : "No subreddit found..."
+                }
                 </div>
             </div>
         );

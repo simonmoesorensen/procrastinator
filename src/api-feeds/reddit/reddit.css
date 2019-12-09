@@ -22,6 +22,11 @@
     height: inherit;
 }
 
+.reddit-item iframe {
+    max-width: 800px;
+    width: 100%;
+}
+
 .reddit-items .col-sm-1 {
     padding: 0;
 }

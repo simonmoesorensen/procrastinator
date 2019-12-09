@@ -8,7 +8,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 const RedditItem = ({file}) => {
     let previewImage;
-    if (file.data.preview && !file.data.url.includes(".gif")) {
+    if (file.data.preview && file.data.preview.enabled && !file.data.url.includes(".gif")) {
         previewImage = file.data.preview.images[0].resolutions[file.data.preview.images[0].resolutions.length - 1].url;
         previewImage = previewImage.replace(/&amp;/g, "&");
     } else if (file.data.url.includes(".gifv")) {
@@ -46,7 +46,8 @@ const RedditItem = ({file}) => {
                             <source src={file.data.media.reddit_video.fallback_url} type="video/mp4"/>
                         </video>
                         : previewImage ? <img className='reddit-image' src={previewImage} alt={previewImage}/>
-                            : ''
+                        : file.data.media && file.data.media.type === "youtube.com" ? Parser(ReactHTMLParser(file.data.media.oembed.html))
+                        : ''
                 }
                 <br/>
             </Col>
