@@ -96,7 +96,6 @@ export default class Reddit extends React.Component {
             .catch(console.log)
     }
 
-    //https://www.reddit.com/r/formuladank/top/.json?count=20
     render() {
         return (
             <div className='feed'>

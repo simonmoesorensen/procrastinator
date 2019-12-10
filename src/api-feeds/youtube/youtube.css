@@ -4,6 +4,57 @@
 }
 
 .youtube-video {
-    max-height: 350px;
+    /*noinspection CssInvalidPropertyValue*/
+    height: -webkit-fill-available;
+    max-height: 550px;
     border: none;
+}
+
+.youtube-statistics {
+    display: inline-grid;
+    grid-template-columns: 35% auto 30%;
+    grid-template-rows: auto;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: .5rem;
+}
+
+.youtube-statistics .info {
+    display: flex;
+    justify-content: space-around;
+    grid-column: 1;
+    grid-row: 1;
+    text-align: left;
+}
+.youtube-statistics .views {
+    background-color: var(--peter-river);
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+}
+
+.youtube-statistics .comments {
+    background-color: var(--peter-river);
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+}
+
+.youtube-statistics .rating {
+    display: flex;
+    justify-content: space-around;
+    grid-column: 3;
+    grid-row: 1;
+    text-align: right;
+}
+
+.youtube-statistics .likes {
+    background-color: var(--emerland);
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+}
+
+.youtube-statistics .dislikes {
+    background-color: var(--alizarin);
+    padding: 0.5rem;
+    border-radius: 0.5rem;
 }

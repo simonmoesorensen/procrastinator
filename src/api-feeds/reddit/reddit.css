@@ -22,6 +22,10 @@ a {
     color: var(--peter-river);
 }
 
+a:hover {
+    color: var(--peter-river);
+}
+
 /* SCROLLBAR */
 
 .scrollbar

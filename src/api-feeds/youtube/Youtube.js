@@ -2,11 +2,9 @@ import React from "react";
 import youtube from './youtube-api.js';
 import '../feed.css';
 import SearchBar from "../SearchBar";
-import VideoDetail from "./YoutubeDetail";
+import YoutubeItem from "./YoutubeItem";
 import {InputGroup} from "react-bootstrap";
 import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
-
 
 
 export default class Youtube extends React.Component {
@@ -14,10 +12,11 @@ export default class Youtube extends React.Component {
         super(props);
 
         this.part = 'snippet, statistics';
-        this.key = 'AIzaSyCTLJXDOMiF29v6kSlOxCZZZ2I3cXZJtco';
+        this.key = 'AIzaSyBM227ZaFzrdYsqNDdwwfRBhO_N8ARpR-w';
         this.maxResults = 10;
 
         this.onSubmit = this.onSubmit.bind(this);
+        this.submitByEnter = this.submitByEnter.bind(this);
     }
 
     state = {
@@ -44,28 +43,60 @@ export default class Youtube extends React.Component {
         })
     }
 
-    searchVideo = async (termFromSearchBar) => {
+    submitByEnter(e) {
+        if (e.keyCode === 13) {
+            this.onSubmit();
+        }
+    }
+
+    searchVideo = async (term) => {
         const response = await youtube.get('/search', {
             params: {
-                part: this.part,
+                part: 'snippet',
                 key: this.key,
                 maxResults: this.maxResults,
-                q: termFromSearchBar,
+                q: term,
                 type: "video",
                 videoEmbeddable: true
             }
         });
+
+        response.data.items = await this.getStatistics(response);
+
         this.setState({
             videos: response.data.items,
             nextPageToken: response.data.nextPageToken,
-            currentSearch: termFromSearchBar
-        })
+            currentSearch: term
+        });
+
     };
+
+    async getStatistics(response) {
+        let ids = response.data.items.map((video) => {
+            return video.id.videoId
+        });
+
+        ids = ids.join(', ');
+
+        const response2 = await youtube.get('/videos', {
+            params: {
+                part: 'statistics',
+                key: this.key,
+                maxResults: this.maxResults,
+                id: ids
+            }
+        });
+
+        return response.data.items = response.data.items.map((item, idx) => {
+            item.statistics = response2.data.items[idx].statistics;
+            return item;
+        });
+    }
 
     nextPage = async () => {
         const response = await youtube.get('/search', {
             params: {
-                part: this.part,
+                part: "snippet",
                 key: this.key,
                 maxResults: this.maxResults,
                 q: this.state.currentSearch,
@@ -74,6 +105,9 @@ export default class Youtube extends React.Component {
                 pageToken: this.state.nextPageToken
             }
         });
+
+        response.data.items = await this.getStatistics(response);
+
         this.setState({
             videos: this.state.videos.slice().concat(response.data.items),
             nextPageToken: response.data.nextPageToken
@@ -109,7 +143,7 @@ export default class Youtube extends React.Component {
             <div className='feed'>
                 <div className='pr-2'>
                     <div>
-                        <SearchBar onChange={(e) => this.onChange(e.target.value)}
+                        <SearchBar onChange={(e) => this.onChange(e.target.value)} onKeyUp={this.submitByEnter}
                         placeholder="Search for a youtube video" append={<InputGroup.Append>
                             <Button variant="primary" onClick={this.onSubmit}>
                                 Search
@@ -121,7 +155,7 @@ export default class Youtube extends React.Component {
                     {
                         (this.state.videos.length !== 0) ?
                             this.state.videos.map((video) => (
-                                <VideoDetail video={video}/>
+                                <YoutubeItem video={video}/>
                             ))
                             : "No video found"
                     }

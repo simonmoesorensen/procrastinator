@@ -60,14 +60,17 @@ const RedditItem = ({file}) => {
 
 function formatToK(number) {
     var str = number.toString();
-    if (number >= 1000) {
-        str = str.slice(0,1) + "." + str.slice(1,2) + "k"
-    } else if (number > 10000) {
-        str = str.slice(0,2) + "." + str.slice(2,3) + "k"
+    if (number > 1000000) {
+        str = str.slice(0) + "." + str.slice(1,2) + "m";
     } else if (number > 100000) {
         str = str.slice(0,3) + "k"
+    } else if (number > 10000) {
+        str = str.slice(0,2) + "." + str.slice(2,3) + "k"
+    } else if (number >= 1000) {
+        str = str.slice(0,1) + "." + str.slice(1,2) + "k"
     }
     return str;
 }
 
 export default RedditItem;
+export {formatToK};

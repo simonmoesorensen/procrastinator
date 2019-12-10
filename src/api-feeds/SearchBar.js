@@ -12,7 +12,11 @@ export default class SearchBar extends React.Component {
         return (
             <InputGroup>
                 {this.props.prepend}
-                <FormControl onChange={this.props.onChange} onSubmit={this.props.onSubmit} placeholder={this.props.placeholder}/>
+                <FormControl onChange={this.props.onChange}
+                             onSubmit={this.props.onSubmit}
+                             onKeyDown={this.props.onKeyDown}
+                             onKeyUp={this.props.onKeyUp}
+                             placeholder={this.props.placeholder}/>
                 {this.props.append}
             </InputGroup>
         );
