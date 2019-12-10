@@ -102,7 +102,7 @@ export default class Reddit extends React.Component {
                 <div className='d-flex justify-content-between'>
                     <div>
                         <SearchBar onChange={(obj) => this.changeSubreddit("r/" + obj.target.value)}
-                        placeholder="subreddit" prepend={<InputGroup.Prepend>
+                        placeholder="Subreddit" prepend={<InputGroup.Prepend>
                                                             <InputGroup.Text>
                                                                 r/
                                                             </InputGroup.Text>

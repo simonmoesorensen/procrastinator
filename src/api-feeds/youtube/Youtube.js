@@ -144,7 +144,7 @@ export default class Youtube extends React.Component {
                 <div className='pr-2'>
                     <div>
                         <SearchBar onChange={(e) => this.onChange(e.target.value)} onKeyUp={this.submitByEnter}
-                        placeholder="Search for a youtube video" append={<InputGroup.Append>
+                        placeholder="Youtube video" append={<InputGroup.Append>
                             <Button variant="primary" onClick={this.onSubmit}>
                                 Search
                             </Button>

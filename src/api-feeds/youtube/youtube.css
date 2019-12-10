@@ -6,13 +6,14 @@
 .youtube-video {
     /*noinspection CssInvalidPropertyValue*/
     height: -webkit-fill-available;
-    max-height: 550px;
+    max-height: 720px;
     border: none;
+    max-width: unset!important;
 }
 
 .youtube-statistics {
     display: inline-grid;
-    grid-template-columns: 35% auto 30%;
+    grid-template-columns: 40% auto 30%;
     grid-template-rows: auto;
     flex-direction: row;
     justify-content: space-between;
