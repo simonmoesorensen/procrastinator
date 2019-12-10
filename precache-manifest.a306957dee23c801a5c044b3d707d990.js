@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "c33b35873abb2a7870ea6d35dad7d1be",
+    "revision": "72c32eec1eb70b95da40b315000e183f",
     "url": "/procrastinator/index.html"
   },
   {
-    "revision": "9f5bee753b1891317967",
+    "revision": "3d018371618d3b9f6aca",
     "url": "/procrastinator/static/css/2.17e5ed98.chunk.css"
   },
   {
-    "revision": "221b5e19dc8068f623d9",
+    "revision": "342503f5b03e1ede2110",
     "url": "/procrastinator/static/css/main.c91824de.chunk.css"
   },
   {
-    "revision": "9f5bee753b1891317967",
-    "url": "/procrastinator/static/js/2.d37493b3.chunk.js"
+    "revision": "3d018371618d3b9f6aca",
+    "url": "/procrastinator/static/js/2.a7fb9d57.chunk.js"
   },
   {
-    "revision": "221b5e19dc8068f623d9",
-    "url": "/procrastinator/static/js/main.55613d39.chunk.js"
+    "revision": "342503f5b03e1ede2110",
+    "url": "/procrastinator/static/js/main.32a444b4.chunk.js"
   },
   {
     "revision": "ac6c649e7ac26a0dac67",
