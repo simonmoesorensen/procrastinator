@@ -67,16 +67,35 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
 
-Firebase
+### Firebase API
 
-### npm install firebase
+ npm install firebase
 
 Install firebase libraries and higher components
 
-### npm install --save firebase react-with-firebase-auth
+ npm install --save firebase react-with-firebase-auth
 
-Facebook API
+https://firebase.google.com/docs/auth/web/manage-users
+Get a user's profile
+To get a user's profile information, use the properties of an instance of User. For example:
 
-### npm install react-facebook-login
+var user = firebase.auth().currentUser;
+var name, email, photoUrl, uid, emailVerified;
+
+if (user != null) {
+  name = user.displayName;
+  email = user.email;
+  photoUrl = user.photoURL;
+  emailVerified = user.emailVerified;
+  uid = user.uid;  // The user's ID, unique to the Firebase project. Do NOT use
+                   // this value to authenticate with your backend server, if
+                   // you have one. Use User.getToken() instead.
+}
+
+### Facebook API
+
+ npm install react-facebook-login
 
 https://www.npmjs.com/package/react-facebook-login
+
+https://developers.facebook.com/docs/reference/javascript/FB.getLoginStatus/
