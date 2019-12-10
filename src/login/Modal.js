@@ -3,6 +3,8 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import FirebaseBtn from './firebase-login.js';
 import FacebookBtn from './facebook-login.js';
+import Col from "react-bootstrap/Col";
+import './Modal.css';
 
 function Loginbox() {
   const [show, setShow] = useState(false);
@@ -19,11 +21,16 @@ function Loginbox() {
         <Modal.Header closeButton>
           <Modal.Title>Login</Modal.Title>
         </Modal.Header>
-        <Modal.Body>Please choose an option.</Modal.Body>
+        <Modal.Body>Please choose an option.
+        <div className="d-flex flex-column">
+        <div class="text-center">
+        
         <FirebaseBtn/>
         <FacebookBtn/>
 
-
+        </div>
+        </div>
+        </Modal.Body>
       </Modal>
     </>
   );

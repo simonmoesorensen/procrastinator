@@ -1,0 +1,33 @@
+.modal {
+  display: none;
+  /* Hidden by default */
+  position: fixed;
+  /* Stay in place */
+  left: 0;
+  top: 0;
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  overflow: auto;
+  /* Enable scroll if needed */
+}
+
+.modal-content {
+  background-color: black;
+  padding: 2px;
+  border: 2px solid black;
+  margin: 15% auto;
+  /* 15% from the top and centered */
+  width: 80%;
+  /* Could be more or less, depending on screen size */
+}
+
+.modal-header {
+  background-color: #6699cc;
+}
+
+.modal-body {
+  background-color: #264d73;
+  color: white;
+}
