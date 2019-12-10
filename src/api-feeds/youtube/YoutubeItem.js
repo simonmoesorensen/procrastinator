@@ -4,7 +4,7 @@ import {faThumbsUp, faThumbsDown, faComment, faEye} from "@fortawesome/free-soli
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {formatToK} from '../reddit/RedditItem';
 
-const YoutubeItem = ({video}) => {
+const YoutubeItem = ({video, onLoad}) => {
     if (!video) {
         return <div>Loading ...</div>;
     }
@@ -12,14 +12,14 @@ const YoutubeItem = ({video}) => {
     let id = video.id.videoId ? video.id.videoId : video.id;
     const videoSrc = `https://www.youtube.com/embed/${id}`;
     const videoLink = `https://www.youtube.com/watch?v=${id}`;
-    console.log(typeof(video));
     return (
         <div className="feed-item flex-column">
-            <div>
+            <div id="youtube-video">
                 <iframe className='youtube-video'
                         width='1080'
                         height='720'
                         preload="auto"
+                        onLoad={onLoad}
                         src={videoSrc} allowFullScreen title='Video player'/>
             </div>
             <div className="youtube-statistics">

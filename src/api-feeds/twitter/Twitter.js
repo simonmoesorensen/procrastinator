@@ -9,6 +9,7 @@ export default class Twitter extends React.Component {
 
         this.submitByEnter = this.submitByEnter.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
+
     }
 
     state = {
