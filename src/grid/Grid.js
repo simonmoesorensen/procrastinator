@@ -70,7 +70,7 @@ export default class Grid extends React.Component {
                     onClick={this.onRemoveItem.bind(this, i)}
                 ><FontAwesomeIcon icon={faTrashAlt}/></span>
 
-                <div>
+                <div className="form">
                     {el.type === 'Twitter' ? (
                         <Twitter/>
                     ) : el.type === 'Youtube' ? (
