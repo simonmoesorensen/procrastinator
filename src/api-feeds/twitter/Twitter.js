@@ -46,8 +46,9 @@ export default class Twitter extends React.Component {
         }
     }
 
-    renderTimeline() {
+   renderTimeline() {
         let elem = document.getElementById("twitter");
+
         window.twttr.widgets.createTimeline(
             {
                 sourceType: "profile",
