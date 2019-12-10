@@ -39,8 +39,7 @@ export default class AddFeed extends React.Component {
         return (
             <div className="actionbar">
                 <h2> Procrastinator feeds </h2>
-                <Dropdown options={options} onChange={this.onSelect} value={'Select feed'}
-                          placeholder="Select an option"/>
+                <Dropdown options={options} onChange={this.onSelect} value={'Select feed'}/>
                 <Button variant="primary" onClick={this.onClick}>Add Item</Button>
             </div>
 

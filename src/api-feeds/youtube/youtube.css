@@ -1,0 +1,61 @@
+.youtube-description {
+    overflow: hidden;
+    max-height: 100px;
+}
+
+.youtube-video {
+    /*noinspection CssInvalidPropertyValue*/
+    height: -webkit-fill-available;
+    max-height: 720px;
+    border: none;
+    max-width: unset!important;
+}
+
+.youtube-statistics {
+    display: inline-grid;
+    grid-template-columns: 40% auto 30%;
+    grid-template-rows: auto;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: .5rem;
+}
+
+.youtube-statistics .info {
+    display: flex;
+    justify-content: space-around;
+    grid-column: 1;
+    grid-row: 1;
+    text-align: left;
+}
+.youtube-statistics .views {
+    background-color: var(--peter-river);
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+}
+
+.youtube-statistics .comments {
+    background-color: var(--peter-river);
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+}
+
+.youtube-statistics .rating {
+    display: flex;
+    justify-content: space-around;
+    grid-column: 3;
+    grid-row: 1;
+    text-align: right;
+}
+
+.youtube-statistics .likes {
+    background-color: var(--emerland);
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+}
+
+.youtube-statistics .dislikes {
+    background-color: var(--alizarin);
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+}

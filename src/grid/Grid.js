@@ -5,10 +5,10 @@ import './resizable-styles.css'
 import _ from "lodash";
 import AddFeed from './AddFeed'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faTrashAlt} from "@fortawesome/free-solid-svg-icons";
-import Reddit from "../api-feeds/Reddit";
-import Twitter from "../api-feeds/Twitter";
-import Youtube from "../api-feeds/Youtube";
+import {faTrashAlt, faArrowsAlt} from "@fortawesome/free-solid-svg-icons";
+import Reddit from "../api-feeds/reddit/Reddit";
+import Twitter from "../api-feeds/twitter/Twitter";
+import Youtube from "../api-feeds/youtube/Youtube";
 import Instagram from "../api-feeds/Instagram";
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
@@ -49,8 +49,10 @@ export default class Grid extends React.Component {
                     i: name + this.state.newCounter,
                     x: (this.state.items.length * 2) % (this.state.cols || 6),
                     y: 0, // puts it at the bottom
-                    w: 2,
-                    h: 2,
+                    w: 3,
+                    h: 3,
+                    minW: 3,
+                    minH: 3,
                     type: name
                 }),
                 // Increment the counter to ensure key is always unique.
@@ -69,8 +71,9 @@ export default class Grid extends React.Component {
                     className="remove"
                     onClick={this.onRemoveItem.bind(this, i)}
                 ><FontAwesomeIcon icon={faTrashAlt}/></span>
-
-                <div>
+                <span
+                    className="drag-handle"
+                ><FontAwesomeIcon icon={faArrowsAlt}/></span>
                     {el.type === 'Twitter' ? (
                         <Twitter/>
                     ) : el.type === 'Youtube' ? (
@@ -81,7 +84,6 @@ export default class Grid extends React.Component {
                         <Reddit/>
                     ) : 'No feed.'
                     }
-                </div>
             </div>
         );
     }
@@ -95,10 +97,11 @@ export default class Grid extends React.Component {
                     className="layout"
                     layouts={this.state.layouts}
                     // breakpoints={{lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0}}
-                    cols={{lg: 12, md: 8, sm: 6, xs: 4, xxs: 0}}
+                    cols={{lg: 12, md: 8, sm: 6, xs: 4, xxs: 3}}
                     onLayoutChange={(layout, layouts) =>
                         this.onLayoutChange(layout, layouts)
-                    }>
+                    }
+                    draggableHandle=".drag-handle">
                     {_.map(this.state.items, el => this.createElement(el))}
 
                 </ResponsiveGridLayout>
