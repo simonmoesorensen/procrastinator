@@ -1,0 +1,60 @@
+.form {
+  height: inherit;
+}
+
+.title {
+  font-size: 20px;
+  text-align: center;
+}
+
+.input {
+  width: 100%;
+  margin-bottom: 3px;
+  background-color: var(--concrete);
+  border: none;
+  padding: 2px 52px 2px 10px;
+  color: white;
+  border-radius: 0.3rem;
+}
+
+.button {
+  margin-bottom: 10px;
+  background-color: var(--peter-river);
+  border: none;
+  border-radius: 0.3rem;
+  color: white;
+  cursor: default;
+  padding: 2px 20px 2px 10px;
+}
+
+.instafeed {
+  overflow-y: auto;
+  height: calc(100% - 170px);
+}
+
+.instaimage {
+    max-width: 800px;
+    width: 100%;
+    height: inherit;
+}
+
+.heart {
+  color: var(--peter-river);
+}
+
+.likes {
+  font-size: 14px;
+}
+
+.username {
+  font-size: 14px;
+}
+
+.caption {
+  font-size: 12px;
+}
+
+.date {
+  color: var(--concrete);
+  font-size: 12px;
+}
