@@ -17,7 +17,7 @@ export default class Instagram extends React.Component {
         this.submitByEnter = this.submitByEnter.bind(this);
 
         this.state = {
-            value: 'ladygaga',
+            value: 'csufofficial',
             images: [],
         };
     }
