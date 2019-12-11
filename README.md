@@ -11,7 +11,7 @@ User can add more "cards" to the display.
 
 Example display of multiple added "cards."
 
-![Display](https://github.com/simonmoesorensen/procrastinator/blob/master/Images/Display.JPG)
+![Display](https://github.com/simonmoesorensen/procrastinator/blob/master/Images/Display1.JPG)
 
 User can manipulate "cards." User can drag the box around with arrows in top right of card, resize via manipulator bottom right, or remove the card via trashcan on the bottom left.
 
