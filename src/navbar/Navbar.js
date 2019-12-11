@@ -1,21 +1,25 @@
 import React from 'react';
-import Button from 'react-bootstrap/Button';
 import './dropdown-style.css';
 import './navbar.css';
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Modal from "../login/Modal";
 
-export default function Navbar() {
-    return (
-        <Row className="navbar">
-            <Col>
+export default class Navbar extends React.Component {
+    render() {
+        return (
+            <Row className="navbar">
+                <Col>
                 <h2> Procrastinator feeds </h2>
             </Col>
             <Col className="d-flex justify-content-end">
-                <Button variant="primary">Login</Button>
-                <Button variant="secondary">Sign up</Button>
-            </Col>
-        </Row>
-    );
-
+                    <div>
+                        <Modal login={this.props.login}
+                               isLoggedIn={this.props.isLoggedIn}
+                               logout={this.props.logout}/>
+                    </div>
+                </Col>
+            </Row>
+        );
+    }
 }
