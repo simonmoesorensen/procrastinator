@@ -88,6 +88,11 @@ export default class Grid extends React.Component {
         );
     }
 
+    onResize() {
+        let width = window.$('#youtube .youtube-video').width();
+        window.$('#youtube .youtube-video').height(width / 1.5);
+    }
+
     render() {
         return (
             <div>
@@ -101,7 +106,8 @@ export default class Grid extends React.Component {
                     onLayoutChange={(layout, layouts) =>
                         this.onLayoutChange(layout, layouts)
                     }
-                    draggableHandle=".drag-handle">
+                    draggableHandle=".drag-handle"
+                    onResize={this.onResize}>
                     {_.map(this.state.items, el => this.createElement(el))}
 
                 </ResponsiveGridLayout>

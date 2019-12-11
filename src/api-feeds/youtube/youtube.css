@@ -4,8 +4,7 @@
 }
 
 .youtube-video {
-    /*noinspection CssInvalidPropertyValue*/
-    height: -webkit-fill-available;
+    /*height: -webkit-fill-available;*/
     max-height: 720px;
     border: none;
     max-width: unset!important;

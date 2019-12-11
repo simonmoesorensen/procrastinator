@@ -8,6 +8,9 @@ import Col from "react-bootstrap/Col";
 export default function Navbar() {
     return (
         <Row className="navbar">
+            <Col>
+                <h2> Procrastinator feeds </h2>
+            </Col>
             <Col className="d-flex justify-content-end">
                 <Button variant="primary">Login</Button>
                 <Button variant="secondary">Sign up</Button>

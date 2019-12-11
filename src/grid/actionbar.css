@@ -3,12 +3,10 @@
     margin: 1rem;
     align-items: center;
     flex-wrap: wrap;
+    padding-left: 1rem;
 }
 
 .actionbar * {
     margin-right: 0.5rem;
 }
 
-h2 {
-    color: white;
-}
