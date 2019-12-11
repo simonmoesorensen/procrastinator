@@ -138,6 +138,11 @@ export default class Youtube extends React.Component {
         }
     };
 
+    onLoad() {
+        let width = window.$('#youtube .youtube-video').width();
+        window.$('#youtube .youtube-video').height(width / 1.5);
+    };
+
     render() {
         return (
             <div className='feed'>
@@ -151,11 +156,11 @@ export default class Youtube extends React.Component {
                         </InputGroup.Append>}/>
                     </div>
                 </div>
-                <div className='feed-items' onScroll={this.handleScroll}>
+                <div id="youtube" className='feed-items' onScroll={this.handleScroll}>
                     {
                         (this.state.videos.length !== 0) ?
-                            this.state.videos.map((video) => (
-                                <YoutubeItem video={video}/>
+                            this.state.videos.map((video, idx) => (
+                                <YoutubeItem key={idx} video={video} onLoad={this.onLoad}/>
                             ))
                             : "No video found"
                     }

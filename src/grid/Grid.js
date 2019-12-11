@@ -9,7 +9,7 @@ import {faTrashAlt, faArrowsAlt} from "@fortawesome/free-solid-svg-icons";
 import Reddit from "../api-feeds/reddit/Reddit";
 import Twitter from "../api-feeds/twitter/Twitter";
 import Youtube from "../api-feeds/youtube/Youtube";
-import Instagram from "../api-feeds/Instagram";
+import Instagram from "../api-feeds/instagram/Instagram";
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
 const originalLayouts = getFromLS("layouts") || {};
@@ -88,6 +88,11 @@ export default class Grid extends React.Component {
         );
     }
 
+    onResize() {
+        let width = window.$('#youtube .youtube-video').width();
+        window.$('#youtube .youtube-video').height(width / 1.5);
+    }
+
     render() {
         return (
             <div>
@@ -101,7 +106,8 @@ export default class Grid extends React.Component {
                     onLayoutChange={(layout, layouts) =>
                         this.onLayoutChange(layout, layouts)
                     }
-                    draggableHandle=".drag-handle">
+                    draggableHandle=".drag-handle"
+                    onResize={this.onResize}>
                     {_.map(this.state.items, el => this.createElement(el))}
 
                 </ResponsiveGridLayout>
