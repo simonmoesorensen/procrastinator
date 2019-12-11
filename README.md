@@ -5,17 +5,27 @@
 
 ![Initial Start](https://github.com/simonmoesorensen/procrastinator/blob/master/Images/Start.JPG)
 
-User can add more "cards" to the display
+User can add more "cards" to the display.
 
 ![Adding](https://github.com/simonmoesorensen/procrastinator/blob/master/Images/Adding.JPG)
 
-Example display of multiple added "cards"
+Example display of multiple added "cards."
 
 ![Display](https://github.com/simonmoesorensen/procrastinator/blob/master/Images/Display.JPG)
 
+User can manipulate "cards." User can drag the box around with arrows in top right of card, resize via manipulator bottom right, or remove the card via trashcan on the bottom left.
+
+![Edit](https://github.com/simonmoesorensen/procrastinator/blob/master/Images/Editsize.JPG)
+The user can search within the cards.*
+
+
+
 Login via login button top right. Modal looks might have changed, but functionality still similar.
+User can login via email login or google or facebook currently.
 
 ![Login](https://github.com/simonmoesorensen/procrastinator/blob/master/Images/Login.JPG)
+
+
 
 
 
