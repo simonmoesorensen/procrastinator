@@ -79,6 +79,7 @@ https://firebase.google.com/docs/auth/web/manage-users
 Get a user's profile
 To get a user's profile information, use the properties of an instance of User. For example:
 
+```
 var user = firebase.auth().currentUser;
 var name, email, photoUrl, uid, emailVerified;
 
@@ -91,6 +92,7 @@ if (user != null) {
                    // this value to authenticate with your backend server, if
                    // you have one. Use User.getToken() instead.
 }
+```
 
 ### Facebook API
 
