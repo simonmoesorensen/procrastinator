@@ -88,8 +88,10 @@ export default class Instagram extends React.Component {
                                         <FontAwesomeIcon icon={faHeart} className="heart"/>
                                         <div className="likes"> by {image.node.edge_liked_by.count} people</div>
                                         <br/>
-                                        <i className="username">{this.state.value}</i>
+                                        <i className="username">{image.node.owner.username}</i>
+                                        {image.node.edge_media_to_caption.edges.length > 0 ?
                                         <p className="caption">{image.node.edge_media_to_caption.edges[0].node.text}</p>
+                                        : 'No caption'}
                                         <p className="date">{(new Date(image.node.taken_at_timestamp * 1000).toDateString())}</p>
                                     </div>
                                 )
