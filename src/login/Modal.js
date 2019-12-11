@@ -30,9 +30,6 @@ export default function LoginModal({login, isLoggedIn, logout}) {
 
     <Modal show={show} onHide={handleClose}
            onEntered={onEntered}>
-        <Modal.Header closeButton>
-          <Modal.Title>Login</Modal.Title>
-        </Modal.Header>
         <Modal.Body>
         <div id="firebaseui-auth-container">
         </div>
