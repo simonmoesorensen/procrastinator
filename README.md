@@ -1,9 +1,9 @@
-CPSC 349 Front end web dev - Final Project
-Group: Wallstreet
+**CPSC 349 Front end web dev - Final Project**
+**Group: Wallstreet**
 
 ## User
 
-![Drag Racing](Dragster.jpg)
+![Drag Racing](Start.jpg)
 
 
 
