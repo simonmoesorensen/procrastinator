@@ -9,7 +9,7 @@ import {faTrashAlt, faArrowsAlt} from "@fortawesome/free-solid-svg-icons";
 import Reddit from "../api-feeds/reddit/Reddit";
 import Twitter from "../api-feeds/twitter/Twitter";
 import Youtube from "../api-feeds/youtube/Youtube";
-import Instagram from "../api-feeds/Instagram";
+import Instagram from "../api-feeds/instagram/Instagram";
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
 const originalLayouts = getFromLS("layouts") || {};

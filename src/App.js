@@ -39,7 +39,7 @@ class App extends React.Component {
     }
 
     logout() {
-        firebase.auth().signOut()
+        firebase.auth().signOut();
     }
 
     render() {
