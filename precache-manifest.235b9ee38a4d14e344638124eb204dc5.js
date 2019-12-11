@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "924a4834d0252e886a0de4060e43b859",
+    "revision": "6a043cd26ac1f874eb16cdd8cdfee5a7",
     "url": "/procrastinator/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/procrastinator/static/css/2.17e5ed98.chunk.css"
   },
   {
-    "revision": "d1e0bf3fcfb79449964e",
+    "revision": "49930cd61400a068218c",
     "url": "/procrastinator/static/css/main.01a58876.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/procrastinator/static/js/2.6245a95d.chunk.js"
   },
   {
-    "revision": "d1e0bf3fcfb79449964e",
-    "url": "/procrastinator/static/js/main.a55e4e47.chunk.js"
+    "revision": "49930cd61400a068218c",
+    "url": "/procrastinator/static/js/main.75a7d537.chunk.js"
   },
   {
     "revision": "ac6c649e7ac26a0dac67",
