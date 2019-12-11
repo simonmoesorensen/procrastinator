@@ -1,7 +1,7 @@
-**CPSC 349 Front end web dev - Final Project**
-**Group: Wallstreet**
+#**CPSC 349 Front end web dev - Final Project**
+#**Group: Wallstreet**
 
-## User
+## Users
 
 ![Initial Start](https://github.com/simonmoesorensen/procrastinator/blob/master/Images/Start.JPG)
 
@@ -11,7 +11,7 @@ User can add more "cards" to the display.
 
 Example display of multiple added "cards."
 
-![Display](https://github.com/simonmoesorensen/procrastinator/blob/master/Images/Display.JPG)
+![Display](https://github.com/simonmoesorensen/procrastinator/blob/master/Images/Display1.JPG)
 
 User can manipulate "cards." User can drag the box around with arrows in top right of card, resize via manipulator bottom right, or remove the card via trashcan on the bottom left.
 
@@ -29,6 +29,24 @@ User can login via email login or google or facebook currently.
 
 
 
+
+---
+---
+##Developers
+
+###api-feeds
+Contains the files for external api feeds : reddit | twitter | youtube | instagram
+
+###grid
+Contains the files for grid and card system on main page layout.
+Grid.js contains the grid functionality. AddFeed.js handles adding more "cards" to the page.
+
+###navbar
+Contains files for navbar.
+Navbar.js handles the simple top bar display and contains the elements for login | signup
+
+###login
+Contains files for login functionality. Connects and authenticates via Google Firebase Authentication.
 
 
 
@@ -101,14 +119,22 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
-
+---
 ### Firebase API
 
+Install firebase
+
+ ```
  npm install firebase
+ ```
+
 
 Install firebase libraries and higher components
 
+
+ ```
  npm install --save firebase react-with-firebase-auth
+ ```
 
 https://firebase.google.com/docs/auth/web/manage-users
 Get a user's profile
@@ -128,12 +154,19 @@ if (user != null) {
                    // you have one. Use User.getToken() instead.
 }
 ```
- npm install firebaseui
 
+
+ ```
+ npm install firebaseui
+ ```
+---
 ### Facebook API
 
+ ```
  npm install react-facebook-login
+ ```
 
 https://www.npmjs.com/package/react-facebook-login
 
 https://developers.facebook.com/docs/reference/javascript/FB.getLoginStatus/
+---
