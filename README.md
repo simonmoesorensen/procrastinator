@@ -3,7 +3,22 @@
 
 ## User
 
-![Initial Start](https://github.com/simonmoesorensen/procrastinator/blob/master/Start.JPG)
+![Initial Start](https://github.com/simonmoesorensen/procrastinator/blob/master/Images/Start.JPG)
+
+User can add more "cards" to the display
+
+![Adding](https://github.com/simonmoesorensen/procrastinator/blob/master/Images/Adding.JPG)
+
+Example display of multiple added "cards"
+
+![Display](https://github.com/simonmoesorensen/procrastinator/blob/master/Images/Display.JPG)
+
+Login via login button top right. Modal looks might have changed, but functionality still similar.
+
+![Login](https://github.com/simonmoesorensen/procrastinator/blob/master/Images/Login.JPG)
+
+
+
 
 
 
@@ -103,6 +118,7 @@ if (user != null) {
                    // you have one. Use User.getToken() instead.
 }
 ```
+ npm install firebaseui
 
 ### Facebook API
 
@@ -111,4 +127,3 @@ if (user != null) {
 https://www.npmjs.com/package/react-facebook-login
 
 https://developers.facebook.com/docs/reference/javascript/FB.getLoginStatus/
-
