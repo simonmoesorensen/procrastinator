@@ -3,7 +3,7 @@
 
 ## User
 
-![Drag Racing](Start.jpg)
+![Initial Start](https://github.com/simonmoesorensen/procrastinator/blob/master/Start.JPG)
 
 
 
